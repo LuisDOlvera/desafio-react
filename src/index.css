@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.cont-grid_princ {
+  grid-template-columns: 64px 7fr 3fr;
+  grid-template-rows: 55px 6fr 2fr;
+}
+
+.text-content-area {
+  white-space: pre-wrap;
+}

@@ -42,7 +42,7 @@ export default function Login() {
   return (
     <>
       <NavBarOffLine />
-      <div className=" bg-[#f5f5f5] max-h-screen">
+      <div className=" bg-[#f5f5f5] min-h-screen">
         <div className="container mx-auto p-4">
           <div className="container bg-white mx-auto w-7/12 p-12 border-solid border-2 border-[#e0e0e0] rounded-md">
             <div className="text-center mb-8">
