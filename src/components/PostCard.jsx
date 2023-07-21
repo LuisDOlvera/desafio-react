@@ -22,7 +22,9 @@ export default function PostCard(props) {
             />
             <div>
               <p className="margin-0 text-sm font-bold">{props.nameUser}</p>
-              <p className="margin-0 text-sm">{props.datePost}</p>
+              <p className="margin-0 text-xs text-start font-extralight">
+                {props.datePost}
+              </p>
             </div>
           </div>
         </div>

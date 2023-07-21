@@ -13,11 +13,11 @@ export default function Login() {
   } = useForm();
 
   function onSubmit(data) {
-    fetch("https://dummyjson.com/auth/login", {
+    fetch("http://localhost:8080/auth", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        username: data.username,
+        email: data.email,
         password: data.password,
       }),
     })
@@ -125,10 +125,10 @@ export default function Login() {
                       className="p-3 w-full bg-[#e8f0fe] rounded-md"
                       type="text"
                       placeholder="e-mail"
-                      {...register("username", {
+                      {...register("email", {
                         required: {
                           value: true,
-                          message: "Nombre de usuario requerido",
+                          message: "E-mail requerido",
                         },
                       })}
                     />

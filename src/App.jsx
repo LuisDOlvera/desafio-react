@@ -18,10 +18,10 @@ export default function App() {
       <NavBar />
 
       <div className="container mx-auto bg-[#f5f5f5] min-h-screen">
-        <div className="grid grid-cols-12 gap-4 border-2 border-blue-700">
+        <div className="grid grid-cols-12 gap-4 border-2">
           <div className="col-start-1 col-end-4 text-center block">
-            <section className="flex flex-col border-2 border-green-600 p-3">
-              <ul className="flex flex-col border-2 border-amber-600">
+            <section className="flex flex-col border-2 p-3">
+              <ul className="flex flex-col border-2">
                 {compnav.map((comp, index) => {
                   return (
                     <SideCompNav

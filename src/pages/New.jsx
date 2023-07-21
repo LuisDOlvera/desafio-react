@@ -1,6 +1,28 @@
-import NavBarPost from "../components/NavBarPost";
+import { useState } from "react";
+import HashTagComp from "../components/HashTagComp";
 
 export default function New() {
+  const [tags, setTags] = useState([]);
+  const [text, setText] = useState(""); //Guarda el valor del input
+
+  function onAddItem() {
+    //Se ejecuta al dar clic en el botón de agregar
+    setTags([text, ...tags]);
+    setText(""); //limpiar el input
+  }
+
+  function onEnter(event) {
+    if (event.key === "Enter") {
+      //Añadir al dar enter
+      onAddItem();
+    }
+  }
+
+  function onDelete(indexToDelete) {
+    tags.splice(indexToDelete, 1);
+    setTags([...tags]);
+  }
+
   return (
     <main className=" bg-[#f5f5f5] min-h-screen">
       <form
@@ -59,23 +81,44 @@ export default function New() {
                 name=""
                 id=""
                 cols="28"
-                rows="2"
+                rows="3"
                 placeholder="New post title here..."
               ></textarea>
             </div>
-            <div className=""></div>
+
             <div className="relative">
-              <div className="flex flex-row p-0 items-center">
-                <ul className="flex flex-row flex-wrap w-full">
-                  <li>
+              <div className="p-0 items-center">
+                <ul className=" w-full list-none">
+                  <li className="w-max list-item">
                     <input
                       className="placeholder-slate-600 text-black"
                       type="text"
                       placeholder="Add up to 4 tags..."
+                      onChange={(event) => setText(event.target.value)} //Evento cuando cambia de valor el input (texto del input)
+                      onKeyUp={onEnter}
+                      value={text} //establece el valor del input
                     />
+                    <div className="flex flex-reverse">
+                      {tags.map((tag, index) => {
+                        return (
+                          <HashTagComp
+                            key={`tag-${index}`}
+                            text={tag}
+                            onDelete={() => onDelete(index)}
+                          />
+                        );
+                      })}
+                    </div>
                   </li>
                 </ul>
               </div>
+              <button
+                type="button"
+                className="bg-[#3b49df] text-white p-2 rounded w-24 mt-2"
+                onClick={onAddItem}
+              >
+                Add Tag
+              </button>
             </div>
           </div>
           <div className="py-8 px-16 flex flex-col relative">
@@ -143,13 +186,12 @@ export default function New() {
                 name=""
                 id=""
                 cols="62"
-                rows="3"
+                rows="10"
                 placeholder="Write your post content here..."
               ></textarea>
             </div>
           </div>
         </div>
-
         <div className="block">
           <div>
             <div className="relative">
