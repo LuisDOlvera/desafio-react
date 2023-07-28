@@ -1,4 +1,6 @@
 export default function PostCard(props) {
+  const title = props.titlePost;
+
   return (
     <div className="flex flex-col bg-white border-solid border-2 border-[#e0e0e0] rounded-md mb-3">
       <img
@@ -30,7 +32,7 @@ export default function PostCard(props) {
         </div>
         <div className="pl-12">
           <h2 className="font-bold text-3xl m-0 pt-3 text-left hover:text-blue-700">
-            {props.titlePost}
+            {title}
           </h2>
           <div className="flex flex-row gap-2 justify-start mt-3 mb-3">
             <a

@@ -59,7 +59,7 @@ export const compcard = [
     timeRead: "11 min read",
   },
   {
-    isfirst: true,
+    isfirst: false,
     imagePost:
       "https://res.cloudinary.com/practicaldev/image/fetch/s--HsTLU_I4--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/fhsb2axu1sna401hlpe0.png",
 

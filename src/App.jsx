@@ -1,10 +1,10 @@
+import { useEffect, useState } from "react";
 import PostCard from "./components/PostCard";
 import SideCompNav from "./components/SideCompNav";
 import SideHashTag from "./components/SideHashTag";
 import NavBar from "./components/NavBar";
 import SideRightCard from "./components/SideRigthCard";
 import { compnav, compnav2 } from "./data/compnav";
-import { compcard } from "./data/compcard";
 import { compsideht } from "./data/compsideht";
 import {
   compsideright,
@@ -13,6 +13,21 @@ import {
 } from "./data/compsideright";
 
 export default function App() {
+  const [compcard, setCompcard] = useState([]);
+
+  function getPostsFromApi() {
+    fetch("http://localhost:8080/cardPosts/")
+      .then((response) => response.json())
+      .then((response) => {
+        console.log("response", response);
+        setCompcard(response.data); //Carga respuesta del servidor a la lista de cards
+      });
+  }
+
+  useEffect(() => {
+    getPostsFromApi();
+  }, []);
+
   return (
     <>
       <NavBar />

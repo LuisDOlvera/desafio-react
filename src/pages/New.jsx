@@ -1,31 +1,29 @@
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 import HashTagComp from "../components/HashTagComp";
 
 export default function New() {
   const [tags, setTags] = useState([]);
-  const [text, setText] = useState(""); //Guarda el valor del input
 
-  function onAddItem() {
-    //Se ejecuta al dar clic en el botón de agregar
-    setTags([text, ...tags]);
-    setText(""); //limpiar el input
+  // const [text, setText] = useState(""); //Guarda el valor del input
+
+  const { register, handleSubmit, reset } = useForm();
+
+  function onSubmit(data) {
+    console.log("data :", data);
+    setTags([data.tagName, ...tags]);
+    reset();
   }
 
-  function onEnter(event) {
-    if (event.key === "Enter") {
-      //Añadir al dar enter
-      onAddItem();
-    }
-  }
-
-  function onDelete(indexToDelete) {
-    tags.splice(indexToDelete, 1);
-    setTags([...tags]);
-  }
+  // function onDelete(indexToDelete) {
+  //   tags.splice(indexToDelete, 1);
+  //   setTags([...tags]);
+  // }
 
   return (
     <main className=" bg-[#f5f5f5] min-h-screen">
       <form
+        onSubmit={handleSubmit(onSubmit)}
         className="container mx-auto px-4 grid grid-rows-3 grid-cols-3 gap-x-4 cont-grid_princ h-screen"
         action=""
       >
@@ -83,6 +81,7 @@ export default function New() {
                 cols="28"
                 rows="3"
                 placeholder="New post title here..."
+                {...register("titlePost")}
               ></textarea>
             </div>
 
@@ -94,18 +93,12 @@ export default function New() {
                       className="placeholder-slate-600 text-black"
                       type="text"
                       placeholder="Add up to 4 tags..."
-                      onChange={(event) => setText(event.target.value)} //Evento cuando cambia de valor el input (texto del input)
-                      onKeyUp={onEnter}
-                      value={text} //establece el valor del input
+                      {...register("tagName")}
                     />
                     <div className="flex flex-reverse">
-                      {tags.map((tag, index) => {
+                      {tags.map((comp, index) => {
                         return (
-                          <HashTagComp
-                            key={`tag-${index}`}
-                            text={tag}
-                            onDelete={() => onDelete(index)}
-                          />
+                          <HashTagComp key={`comp-${index}`} text={comp} />
                         );
                       })}
                     </div>
@@ -113,9 +106,8 @@ export default function New() {
                 </ul>
               </div>
               <button
-                type="button"
+                type="submit"
                 className="bg-[#3b49df] text-white p-2 rounded w-24 mt-2"
-                onClick={onAddItem}
               >
                 Add Tag
               </button>
@@ -188,6 +180,7 @@ export default function New() {
                 cols="62"
                 rows="10"
                 placeholder="Write your post content here..."
+                {...register("bodyPost")}
               ></textarea>
             </div>
           </div>
@@ -208,7 +201,7 @@ export default function New() {
         <div className="flex flex-row col-start-2 col-span-2 relative items-center h-13">
           <button
             className="whitespace-nowrap mr-2 bg-[#3b49df] hover:bg[#2f3ab2] text-white font-bold h-10 rounded-md py-2 px-4"
-            type="button"
+            type="submit"
           >
             Publish
           </button>

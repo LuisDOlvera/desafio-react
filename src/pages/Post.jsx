@@ -39,11 +39,7 @@ export default function Post() {
                 <div className="inline-flex flex-col items-center">
                   <button className="p-2">
                     <svg width="24px" height="24px">
-                      <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
-                        d="M7 12a2 2 0 11-4 0 2 2 0 014 0zm7 0a2 2 0 11-4 0 2 2 0 014 0zm5 2a2 2 0 100-4 2 2 0 000 4z"
-                      ></path>
+                      <path d="M7 12a2 2 0 11-4 0 2 2 0 014 0zm7 0a2 2 0 11-4 0 2 2 0 014 0zm5 2a2 2 0 100-4 2 2 0 000 4z"></path>
                     </svg>
                   </button>
                 </div>
